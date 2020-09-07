@@ -1,7 +1,8 @@
 package com.zqskate.schedule.service.impl;
 
 import com.zqskate.schedule.service.MailService;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.mail.MailException;
@@ -19,9 +20,10 @@ import java.io.File;
  * @author CHAN
  * @date 2020/06/22
  */
-@Slf4j
 @Service
 public class MailServiceImpl implements MailService {
+
+    private static final Logger log = LoggerFactory.getLogger(MailServiceImpl.class);
 
     @Resource
     private JavaMailSender javaMailSender;

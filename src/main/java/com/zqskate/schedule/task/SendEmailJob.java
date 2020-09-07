@@ -1,7 +1,8 @@
 package com.zqskate.schedule.task;
 
 import com.zqskate.schedule.service.MailService;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
@@ -12,16 +13,26 @@ import javax.annotation.Resource;
  * @author CHAN
  * @date 2020/06/22
  */
-@Slf4j
 @Component
 @EnableScheduling
 public class SendEmailJob {
+
+    private static final Logger log = LoggerFactory.getLogger(SendEmailJob.class);
 
     @Resource
     private MailService mailService;
 
     /**
-     * cron 表达式
+     * 加入 Scheduled 使用 cron 表达式实现定时发送邮件
+     *
+     *  .----------------- Seconds (0 - 59)
+     *  | .-------------- Minutes (0 - 59)
+     *  | | .----------- Hours (0 - 23)
+     *  | | | .-------- Day of Month (0 - 31)
+     *  | | | | .----- Month (1 - 12)
+     *  | | | | | .-- Day of Week (1 - 7 or SUN - SAT)
+     *  | | | | | |
+     *  * * * * * * cron expression
      */
     @Scheduled(cron = "0/1 * * * * *")
     public void sendEmail() {
