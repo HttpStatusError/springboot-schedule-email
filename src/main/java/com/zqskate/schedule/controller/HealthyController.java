@@ -26,7 +26,7 @@ public class HealthyController {
     @GetMapping("version")
     public ResponseEntity<Object> healthyCheck() {
         String format = String.format("%s_%s_%s", profile, projectName, buildTime);
-        return new ResponseEntity<Object>(format, HttpStatus.OK);
+        return new ResponseEntity<>(format, HttpStatus.OK);
     }
 
 }
