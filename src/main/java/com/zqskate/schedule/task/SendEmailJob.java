@@ -48,8 +48,10 @@ public class SendEmailJob {
     @SendEmail(to = "xxxxxx@qq.com",
             subject = "hello, This is a test email",
             content = "If you see this email, the test is successful")
-    public void sendEmailAop() {
+    public void sendEmailAop() {}
 
-    }
+    @Scheduled(cron = "0 0 0 0 1 *")
+    @SendEmail(to = "", subject = "", content = "")
+    public void sendEmail2Aop() {}
 
 }
