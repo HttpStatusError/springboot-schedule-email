@@ -1,5 +1,6 @@
 package com.zqskate.schedule.task;
 
+import com.zqskate.schedule.annotation.SendEmail;
 import com.zqskate.schedule.service.MailService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -42,5 +43,15 @@ public class SendEmailJob {
         mailService.sendSimpleMail(to, subject, content);
         log.info(String.format("[%s]:[%s]:[%s]", to, subject, content));
     }
+
+    @Scheduled(cron = "0 0 0 0 1 *")
+    @SendEmail(to = "xxxxxx@qq.com",
+            subject = "hello, This is a test email",
+            content = "If you see this email, the test is successful")
+    public void sendEmailAop() {}
+
+    @Scheduled(cron = "0 0 0 0 1 *")
+    @SendEmail(to = "", subject = "", content = "")
+    public void sendEmail2Aop() {}
 
 }
