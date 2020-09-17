@@ -1,5 +1,6 @@
 package com.zqskate.schedule.aspect;
 
+import cn.hutool.extra.mail.MailUtil;
 import com.zqskate.schedule.annotation.SendEmail;
 import com.zqskate.schedule.service.MailService;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -22,9 +23,6 @@ import java.util.List;
 @Aspect
 public class SendEmailAspect {
 
-    @Resource
-    private MailService mailService;
-
     @Pointcut("@annotation(com.zqskate.schedule.annotation.SendEmail)")
     public void pointCut() {
     }
@@ -37,7 +35,7 @@ public class SendEmailAspect {
         String to = anno.to();
         String subject = anno.subject();
         String content = anno.content();
-        mailService.sendSimpleMail(to, subject, content);
+        MailUtil.sendText(to, subject, content);
     }
 
 }
