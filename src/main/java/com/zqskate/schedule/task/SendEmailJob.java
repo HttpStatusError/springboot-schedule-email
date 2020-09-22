@@ -54,4 +54,8 @@ public class SendEmailJob {
     @SendEmail(to = "", subject = "", content = "")
     public void sendEmail2Aop() {}
 
+    @Scheduled(cron = "0 0 0 0 1 *")
+    @SendEmail(to = "", subject = "", content = "")
+    public void sendEmail3Aop() {}
+
 }
